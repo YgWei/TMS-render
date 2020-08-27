@@ -1,0 +1,55 @@
+version: "3"
+services:
+  arangodb:
+    image: "arangodb:latest"
+    environment:
+      ARANGO_ROOT_PASSWORD: belstar123
+    volumes:
+      - "/tmp/arangodb:/var/lib/arangodb3"
+    ports:
+      - "8530:8529"
+    networks:
+      - network
+
+  storage:
+    image: run-local-storage
+    container_name: local-storage
+    ports:
+      - 5000:5000
+    networks:
+      - network
+
+  render:
+    image: harbor.belstardoc.com/ssmo/adapter/jk-adapter:v3
+    container_name: render-adapter
+    volumes:
+      - ./Render/logs:/home/node/app/logs
+      - ./Render/.env:/home/node/app/.env
+    restart: on-failure
+    ports:
+      - 8080:8080
+    networks:
+      - network
+    depends_on:
+      - storage
+      - arangodb
+    command: ["./wait-for-it.sh", "db:8530", "--", "python", "app.py"]
+
+  monitor:
+    image: harbor.belstardoc.com/ssmo/adapter/jk-monitor:v1
+    container_name: dir-monitor
+    volumes:
+      - ./Monitor/input:/home/node/app/input
+      - ./Monitor/error:/home/node/app/error
+      - ./Monitor/archive:/home/node/app/archive
+      - ./Monitor/logs:/home/node/app/logs
+      - ./Monitor/.env:/home/node/app/.env
+    networks:
+      - network
+    depends_on:
+      - storage
+      - render
+
+networks:
+  network:
+    driver: bridge

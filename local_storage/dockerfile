@@ -1,0 +1,18 @@
+FROM node:10.14.2-alpine AS base
+RUN apk --no-cache --virtual build-dependencies add \
+    python \
+    make \
+    g++ \
+    && apk del build-dependencies
+
+FROM base AS src
+# Define working directory and copy source
+ENV NODE_ENV=production
+WORKDIR /home/node/app
+COPY ./package* ./
+RUN npm install
+
+COPY . .
+
+# Start the app
+CMD npm start

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<policyinfo>
+  <productionInfo>
+    <company>jkdjk</company>
+    <name>qrh</name>
+    <type>2</type>
+  </productionInfo>
+  <printtype>3</printtype>
+  <version>JKNH-KYSQ-ZGQRH-2019A1</version>
+  <startno>60</startno>
+  <serialno>00000601</serialno>
+  <tailno>06</tailno>
+  <branch>江苏分公司营业本部</branch>
+  <policylist>
+    <policy>
+      <policyno>8088000000871336</policyno>
+      <insuranceName>君康乐颐养老年金保险</insuranceName>
+    </policy>
+  </policylist>
+  <applicantName>梁华</applicantName>
+  <applicantIDCardNO>320623197704048111</applicantIDCardNO>
+  <country>中国</country>
+  <province>上海</province>
+  <city>上海</city>
+  <area>闵行浦锦康养社区</area>
+</policyinfo>

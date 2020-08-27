@@ -1,0 +1,20 @@
+# Compiled binary addons
+dist
+
+# Dependency directory
+node_modules
+
+# Git ignore
+.git
+.gitignore
+README.md
+
+# Mac config
+.DS_Store
+
+# Docker
+Dockerfile
+.dockerignore
+
+# project folder
+logs
